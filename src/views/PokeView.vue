@@ -2,13 +2,12 @@
 import {useFavoritosStore} from "@/store/favoritos"
 import {useRoute, useRouter} from 'vue-router'
 import {useGetData} from '@/composables/getData'
-import { storeToRefs } from "pinia";
+
 
 const {getData,data,loading,error} = useGetData()
 const route = useRoute()
 const router = useRouter()
 const useFavoritos = useFavoritosStore()
-
 const back = () => {
     router.push("/pokemons")
 }
@@ -43,7 +42,7 @@ getData(`https://pokeapi.co/api/v2/pokemon/${route.params.pokename}`)
                 </ul>
                 <div class="btn-group gap-3">
                 <button @click="back" class="btn btn-primary">Regresar</button>
-                <button @click="useFavoritos.add(data)" class="btn btn-primary">Agregar a favoritos</button>
+                <button :disabled="useFavoritos.repetido(data.name)" @click="useFavoritos.add(data)" class="btn btn-primary" >Agregar a favoritos</button>
             </div>
             </div>
         </div>
