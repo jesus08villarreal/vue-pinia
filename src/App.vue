@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-
+import { useCalculadoraStore } from './store/calc';
+const useCalculadora = useCalculadoraStore()
 </script>
 
 <template>
@@ -14,9 +15,9 @@ import { RouterLink, RouterView } from 'vue-router'
 <RouterLink to="/" class="btn btn-outline-primary">Home</RouterLink>
 <RouterLink to="/pokemons" class="btn btn-outline-primary">Pokemons</RouterLink>
 <RouterLink to="/favoritos" class="btn btn-outline-primary">Poke Favs</RouterLink>
+<RouterLink to="/calculadora" class="btn btn-outline-primary">Calculadora {{ useCalculadora.navResult }}</RouterLink>
 </div>
-</nav>
-    
+  </nav>
       </header>
 
   <RouterView />
